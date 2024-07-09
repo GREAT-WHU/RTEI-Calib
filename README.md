@@ -87,7 +87,7 @@ Source it and Just run it! "roslaunch rtei_calib rtei_calib.launch"
 
 # Run self-collected dataset
 
-One of the self-collected sequences are available [here]([https://whueducn-my.sharepoint.com/:f:/g/personal/lishengyu_whu_edu_cn/EnRz-B4rZPFFgJTvDt5H_yMBeN8l_OtgYOQ8tFcr8EyqIA?e=la3hzG]).
+One of the self-collected sequences are available [here](https://whueducn-my.sharepoint.com/:f:/g/personal/lishengyu_whu_edu_cn/EnRz-B4rZPFFgJTvDt5H_yMBeN8l_OtgYOQ8tFcr8EyqIA?e=la3hzG).
 
 To run our method on this sequence, change the term "value=XXXX" in file "config/rtei-calib.launch" to **"value="$(find rtei_calib)/config/rtei-config-self.yaml""**
 
