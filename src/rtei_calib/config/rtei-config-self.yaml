@@ -1,0 +1,56 @@
+
+# MULTI_EVENT_IMU
+SolveMode: "MULTI_Event_IMU"
+
+CalibData:
+  IMUs:
+    - Topic: "/recording/imu"
+    - Topic: "/imu/data"
+  Events:
+    - Topic: "/recording/events"
+      ParamPath: "/home/lsy/Open_RTEI/RTEI_Calib/src/rtei_calib/config/params_self.yaml"
+  BagPath: "/home/lsy/event_dataset/inte.bag"
+  ParamSavePath: "/home/lsy/Event/params.json"
+  # the time piece: [BegTime, BegTime + Duration], unit: second(s)
+  # if you want to use all time data for calibration, please set them to negative numbers
+  BeginTime: 10
+  Duration: 30
+  OutputData:
+    OutputDataDir: "/home/lsy/Event"
+    OutputIMUFrame: false
+    OutputWarpedImageFrame: false
+    OutputLMEquationGraph: false
+    OutputParamInEachIter: true
+
+EventCamInfo:
+  NumEventPerPacket: 50000
+  OutputAngVelFrequency: 0.01
+  EventBatchSize: 100
+  BlurSigma: 1
+
+Optimization:
+  UseCuda: false
+  # Whether to optimize the time offset, locking means do not optimize the time offset.
+  LockTimeOffset: false
+  # # Whether to optimize the intrinsic coeff(This refers to the imu internal parameters), locking means it is not optimized.
+  LockIMUIntrinsic: true
+  OptWeight:
+    GyroWeight: 1.0
+    AcceWeight: 1.0
+    # used to fix the first imu pose to be identity
+    SO3Weight: 1.0
+    POSWeight: 1.0
+    AngVelWeight: 1.0
+  # if set this value smaller than one, it will be set to std::thread::hardware_concurrency()
+  ThreadNum: 10
+  # max iterations
+  CeresIterations: 100
+  # the optimization bounds, make this value be positive
+  TimeOffsetPadding: 0.3
+  # rs-camera readout time padding  | not used
+  TimeReadoutPadding: 0.03
+  ProgressToStdout: true
+  RefineIterations: 8
+
+BSpline:
+  KnotTimeDistance: 0.02
