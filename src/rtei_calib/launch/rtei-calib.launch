@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<launch>
+    <node pkg="rtei_calib" type="rtei_calib_prog" name="rtei_calib_prog_node" output="screen">
+        <param name="config_filename"
+               value="$(find rtei_calib)/config/rtei-config-public.yaml"
+               type="string"/>
+        <param name="shot_screen_save_dir" value="$(find rtei_calib)/scene" type="string"/>
+    </node>
+</launch>
